@@ -7,4 +7,4 @@ db.connect(process.env.DATABASEURL, {
 })
 
 module.exports.User = require('./user');
-module.exports.Message = require('./message');
+module.exports.Post = require('./post');

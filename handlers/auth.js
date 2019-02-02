@@ -11,15 +11,15 @@ exports.signin = async function(req, res, next){
    try{
       const {email, password} = req.body;
       const user = await db.User.findOne({email});
-      const {_id, username, image} = user;
+      const {id, username, image} = user;
       const isMatch = user.checkPassword(password);
 
       if (isMatch) {
          const token = jwt.sign({
-            _id, username, image
+            id, username, image
          }, signKey);
          return res.status(200).json({
-            _id, username, image, token
+            id, username, image, token
          })
       } else {
          return next(error);
@@ -27,7 +27,7 @@ exports.signin = async function(req, res, next){
    } catch(err){
       console.log(err);
       return next(error);
-   }
+   };
 };
 
 exports.signup = async function(req, res, next){

@@ -18,7 +18,11 @@ const userSchema = new db.Schema({
 	},
 	image: {
 		type: String
-    }
+	 },
+	 posts: [{
+		 type: db.Schema.Types.ObjectId,
+		 ref: 'Post'
+	 }]
 });
 
 userSchema.pre('save', async function(next){
@@ -34,7 +38,7 @@ userSchema.pre('save', async function(next){
 	}
 })
 
-userSchema.method.checkPassword = async function(plainPassword, next){
+userSchema.methods.checkPassword = async function(plainPassword, next){
 	try {
 		const isMatch = await bcrypt.compare(plainPassword, this.password);
 		return isMatch;
