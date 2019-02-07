@@ -38,12 +38,12 @@ userSchema.pre('save', async function(next){
 	}
 })
 
-userSchema.methods.checkPassword = async function(plainPassword, next){
+userSchema.methods.checkPassword = async function(plainPassword){
 	try {
 		const isMatch = await bcrypt.compare(plainPassword, this.password);
 		return isMatch;
 	} catch(err) {
-		return next(err);
+		return false;
 	}
 }
 

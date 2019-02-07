@@ -11,6 +11,7 @@ const errorHandler = require('./handlers/error');
 const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/post');
 const { isLoggedIn, isAuthorized } = require('./middleware/auth');
+const db = require('./models');
 
 app.use(bodyParser.json());
 

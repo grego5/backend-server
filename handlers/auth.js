@@ -11,8 +11,9 @@ exports.signin = async function(req, res, next){
    try{
       const {email, password} = req.body;
       const user = await db.User.findOne({email});
+      if (!user) throw error;
       const {id, username, image} = user;
-      const isMatch = user.checkPassword(password);
+      const isMatch = await user.checkPassword(password);
 
       if (isMatch) {
          const token = jwt.sign({
