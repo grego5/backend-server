@@ -19,9 +19,7 @@ exports.signin = async function(req, res, next){
          const token = jwt.sign({
             id, username, image
          }, signKey);
-         return res.status(200).json({
-            id, username, image, token
-         })
+         return res.status(200).json({token})
       } else {
          return next(error);
       }
@@ -38,9 +36,7 @@ exports.signup = async function(req, res, next){
       const token = jwt.sign({
          id, username, image
       }, signKey);
-      return res.status(200).json({
-         id, username, image, token
-      })
+      return res.status(200).json({token})
    } catch(err){
       if (err.code === 11000){
          err.message = "Username or emmail is already taken"
