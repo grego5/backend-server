@@ -1,12 +1,13 @@
 const router = require('express').Router({mergeParams: true});
 
-const { createPost, getPost, deletePost } = require('../handlers/post');
+const { createPost, allPosts, onePost, deletePost } = require('../handlers/post');
 
 router.route('/')
+   .get(allPosts)
    .post(createPost);
 
 router.route('/:postId')
-   .get(getPost)
+   .get(onePost)
    .delete(deletePost);
    
 module.exports = router;

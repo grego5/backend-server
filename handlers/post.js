@@ -22,7 +22,23 @@ exports.createPost = async function(req, res ,next){
    };
 };
 
-exports.getPost = async function(req, res ,next){
+exports.allPosts = async function(req, res ,next){
+	try {
+		const posts = await db.Post.find()
+			.sort({ createdAt: 'desc' })
+			.populate('user', {
+				username: true,
+				image: true
+			});
+		if (posts.length === 0) throw {message: `There are no posts to display`, status: 404};
+		return res.status(200).json(posts);
+	} catch(err) {
+		console.log(err);
+		next(err);
+	}
+};
+
+exports.onePost = async function(req, res ,next){
    try {
       const post = await db.Post.findById(req.params.postId);
       if (!post) throw {message: 'Post is not found'};

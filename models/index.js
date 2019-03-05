@@ -8,3 +8,4 @@ db.connect(process.env.DATABASEURL, {
 
 module.exports.User = require('./user');
 module.exports.Post = require('./post');
+module.exports.Todo = require("./todo");

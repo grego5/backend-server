@@ -13,6 +13,7 @@ exports.signin = async function(req, res, next){
       const user = await db.User.findOne({email});
       if (!user) throw error;
       const {id, username, image} = user;
+      
       const isMatch = await user.checkPassword(password);
 
       if (isMatch) {
