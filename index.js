@@ -27,7 +27,7 @@ app.get('/api/posts', isLoggedIn, async function(req, res, next){
 				username: true,
 				image: true
 			});
-		if (posts.length === 0) throw {message: `There are no posts to display`};
+		if (posts.length === 0) throw {message: `There are no posts to display`, status: 404};
 		return res.status(200).json(posts);
 	} catch(err) {
 		console.log(err);

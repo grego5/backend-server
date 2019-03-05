@@ -17,8 +17,8 @@ exports.createPost = async function(req, res ,next){
       });
       return res.status(200).json(createdPost);
    } catch(err) {
-      console.log(err);
-      return next(err);
+      console.log(err.message);
+      next({message:err.message, status: 400});
    };
 };
 
@@ -28,8 +28,8 @@ exports.getPost = async function(req, res ,next){
       if (!post) throw {message: 'Post is not found'};
       return res.status(200).json(post);
    } catch(err) {
-      console.log(err);
-      next(err);
+      console.log(err.message);
+      next({message:err.message, status: 400});
    }
 };
 
@@ -40,8 +40,8 @@ exports.deletePost = async function(req, res ,next){
       await post.remove();
       return res.status(200).json(post);
    } catch(err) {
-      console.log(err);
-      next(err);
+      console.log(err.message);
+      next({message:err.message, status: 400});
    }
 };
 
