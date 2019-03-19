@@ -3,8 +3,7 @@ nodejs server to serve my react apps and API requests
 #Served apps  
 http://gregos.net/blog  
 http://gregos.net/todos  
-http://gregos.net/calc  
-http://gregos.net/hackeru  
+http://gregos.net/calc
 
 #blog API  
 C (post) http://gregos.net/api/blog/ - create new post  
